@@ -11,37 +11,5 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/assets/index-dq8r8u1a.js"></script>
-
-    <script>
-      document.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const form = e.target;
-        const formData = new FormData(form);
-        formData.append('access_key', 'b3c6b759-6d40-4aaf-a9b5-2e2904855d0d');
-        formData.append('subject', 'Neue B2B-Anfrage über halat-handel.de');
-
-        const btn = form.querySelector('button[type="submit"]') || form.querySelector('button');
-        const originalText = btn ? btn.textContent : '';
-        if (btn) btn.textContent = 'Wird gesendet...';
-
-        try {
-          const res = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            body: formData
-          });
-          const data = await res.json();
-          if (data.success) {
-            alert('Vielen Dank! Ihre B2B-Anfrage wurde erfolgreich übermittelt.');
-            form.reset();
-          } else {
-            alert('Fehler beim Senden: ' + (data.message || 'Bitte prüfen.'));
-          }
-        } catch (err) {
-          alert('Verbindungsfehler beim Absenden der Anfrage.');
-        } finally {
-          if (btn) btn.textContent = originalText;
-        }
-      }, true);
-    </script>
   </body>
 </html>
